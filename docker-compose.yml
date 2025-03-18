@@ -1,0 +1,16 @@
+services:
+  test:
+    image: test
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - test
+    ports:
+      - 8080:8080
+      
